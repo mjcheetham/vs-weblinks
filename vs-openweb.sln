@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2035
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{05BE30F2-EBE1-4527-ADA6-D4A3C0530A78}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenInWeb.Vsix", "src\OpenInWeb.Vsix\OpenInWeb.Vsix.csproj", "{E10A32A0-B019-4EAB-84C7-121191DC0480}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E10A32A0-B019-4EAB-84C7-121191DC0480}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E10A32A0-B019-4EAB-84C7-121191DC0480}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E10A32A0-B019-4EAB-84C7-121191DC0480}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E10A32A0-B019-4EAB-84C7-121191DC0480}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E10A32A0-B019-4EAB-84C7-121191DC0480} = {05BE30F2-EBE1-4527-ADA6-D4A3C0530A78}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E82725E9-A8EA-4B63-A95E-7DE4D07557E6}
+	EndGlobalSection
+EndGlobal
