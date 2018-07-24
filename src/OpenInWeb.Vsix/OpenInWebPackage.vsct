@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CommandTable xmlns="http://schemas.microsoft.com/VisualStudio/2005-10-18/CommandTable" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <Extern href="stdidcmd.h"/>
+  <Extern href="vsshlids.h"/>
+
+  <Commands package="guidPackage">
+    <Groups>
+      <Group guid="guidMainCmdSet" id="EditorContext_MainGroup" priority="0x0600">
+        <Parent guid="guidSHLMainMenu" id="IDM_VS_MENU_TOOLS"/>
+      </Group>
+    </Groups>
+
+    <Buttons>
+      <Button guid="guidMainCmdSet" id="OpenInWeb" priority="0x0100" type="Button">
+        <Parent guid="guidMainCmdSet" id="EditorContext_MainGroup" />
+        <Strings>
+          <ButtonText>Open In Web</ButtonText>
+        </Strings>
+      </Button>
+    </Buttons>
+  </Commands>
+
+  <Symbols>
+    <GuidSymbol name="guidPackage" value="{606c502b-a1df-4f93-8fbe-563535ee1606}" />
+
+    <GuidSymbol name="guidMainCmdSet" value="{1411d7eb-4138-4ad9-a153-65061892122e}">
+      <!-- Groups -->
+      <IDSymbol name="EditorContext_MainGroup" value="0x1020" />
+
+      <!-- Buttons -->
+      <IDSymbol name="OpenInWeb" value="0x0100" />
+    </GuidSymbol>
+  </Symbols>
+</CommandTable>
