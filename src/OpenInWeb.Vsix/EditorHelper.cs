@@ -55,5 +55,27 @@ namespace OpenInWeb.Vsix
         {
             return viewHost.TextView.Selection;
         }
+
+        /// <summary>
+        /// Get the line and character numbers from a given position.
+        /// </summary>
+        /// <param name="position">Position to get the line and character numbers of</param>
+        /// <returns>Line and character numbers (1-based)</returns>
+        public static (int line, int character) GetLineAndColumnFromPosition(SnapshotPoint position)
+        {
+            ITextSnapshot snapshot = position.Snapshot;
+            ITextSnapshotLine line = snapshot.GetLineFromPosition(position);
+
+            int zeroLineNumber = line.LineNumber;
+            // To get the (zero-based) character number subtract the index of the first character
+            // on this line from the buffer index.
+            int zeroCharNumber = (position - line.Start);
+
+            // Make sure to add one to the number to get from zero-based to the user expected one-based indexing.
+            int lineNumber   = zeroLineNumber   + 1;
+            int charNumber   = zeroCharNumber   + 1;
+
+            return (lineNumber, charNumber);
+        }
     }
 }

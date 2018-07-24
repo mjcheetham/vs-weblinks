@@ -54,17 +54,14 @@ namespace OpenInWeb.Vsix
                 ITextDocument document = EditorHelper.GetTextDocumentForView(currentViewHost);
                 ITextSelection selection = EditorHelper.GetSelection(currentViewHost);
 
-                VirtualSnapshotPoint start = selection.Start;
-                VirtualSnapshotPoint end = selection.End;
-
-                int startLineNumber = start.Position.Snapshot.GetLineNumberFromPosition(start.Position);
-                int endLineNumber   = end.Position.Snapshot.GetLineNumberFromPosition(end.Position);
+                var start = EditorHelper.GetLineAndColumnFromPosition(selection.Start.Position);
+                var end = EditorHelper.GetLineAndColumnFromPosition(selection.End.Position);
 
                 string filePath = document?.FilePath;
 
                 VsShellUtilities.ShowMessageBox(
                     this._package,
-                    $"Selection from line {startLineNumber} to {endLineNumber}",
+                    $"Selection from L{start.line}C{start.character} to L{end.line}C{end.character} in {filePath ?? "unsaved file"}.",
                     "Open In Web",
                     OLEMSGICON.OLEMSGICON_INFO,
                     OLEMSGBUTTON.OLEMSGBUTTON_OK,
