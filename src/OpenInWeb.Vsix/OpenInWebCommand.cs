@@ -1,7 +1,6 @@
 ﻿using System;
 using System.ComponentModel.Design;
 using Microsoft.VisualStudio.Shell;
-using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.Text;
 using Microsoft.VisualStudio.Text.Editor;
 using Task = System.Threading.Tasks.Task;
@@ -47,25 +46,40 @@ namespace OpenInWeb.Vsix
 
         private void GetSelectedTextInfo()
         {
-            IWpfTextViewHost currentViewHost = EditorHelper.GetCurrentViewHost(_package);
-
-            if (currentViewHost != null)
+            IOpenInWebService openInWebService = _package.GetService<IOpenInWebService>();
+            if (openInWebService != null)
             {
-                ITextDocument document = EditorHelper.GetTextDocumentForView(currentViewHost);
-                ITextSelection selection = EditorHelper.GetSelection(currentViewHost);
+                IWpfTextViewHost currentViewHost = EditorHelper.GetCurrentViewHost(_package);
+                if (currentViewHost != null)
+                {
+                    ITextDocument document = EditorHelper.GetTextDocumentForView(currentViewHost);
+                    ITextSelection selection = EditorHelper.GetSelection(currentViewHost);
 
-                var start = EditorHelper.GetLineAndColumnFromPosition(selection.Start.Position);
-                var end = EditorHelper.GetLineAndColumnFromPosition(selection.End.Position);
+                    var start = EditorHelper.GetLineAndColumnFromPosition(selection.Start.Position);
+                    var end = EditorHelper.GetLineAndColumnFromPosition(selection.End.Position);
 
-                string filePath = document?.FilePath;
+                    string filePath = document?.FilePath;
 
-                VsShellUtilities.ShowMessageBox(
-                    this._package,
-                    $"Selection from L{start.line}C{start.character} to L{end.line}C{end.character} in {filePath ?? "unsaved file"}.",
-                    "Open In Web",
-                    OLEMSGICON.OLEMSGICON_INFO,
-                    OLEMSGBUTTON.OLEMSGBUTTON_OK,
-                    OLEMSGDEFBUTTON.OLEMSGDEFBUTTON_FIRST);
+                    var selectionInfo = new VsEditorSelectionInfo(start.line, start.character, end.line, end.character);
+
+                    openInWebService.OpenSelectionInWeb(filePath, selectionInfo);
+                }
+            }
+        }
+
+        private class VsEditorSelectionInfo : ISelectionInformation
+        {
+            public int StartLineNumber      { get; }
+            public int StartCharacterNumber { get; }
+            public int EndLineNumber        { get; }
+            public int EndCharacterNumber   { get; }
+
+            public VsEditorSelectionInfo(int startLine, int startChar, int endLine, int endChar)
+            {
+                StartLineNumber      = startLine;
+                StartCharacterNumber = startChar;
+                EndLineNumber        = endLine;
+                EndCharacterNumber   = endChar;
             }
         }
     }

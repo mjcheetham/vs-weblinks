@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 using System.Threading;
+using System.Threading.Tasks;
 using Microsoft.VisualStudio.Shell;
 using Task = System.Threading.Tasks.Task;
 
@@ -14,8 +15,22 @@ namespace OpenInWeb.Vsix
     {
         protected override async Task InitializeAsync(CancellationToken cancellationToken, IProgress<ServiceProgressData> progress)
         {
+            this.AddServiceAsync<IOpenInWebService>(CreateOpenInWebService, false);
+
             await this.JoinableTaskFactory.SwitchToMainThreadAsync(cancellationToken);
             await OpenInWebCommand.InitializeAsync(this);
+        }
+
+        private static Task<IOpenInWebService> CreateOpenInWebService()
+        {
+            var providers = new IWebProvider[]
+            {
+                new GitHubWebProvider(),
+            };
+
+            var service = new OpenInWebService(providers);
+
+            return Task.FromResult<IOpenInWebService>(service);
         }
     }
 }
