@@ -4,6 +4,13 @@ namespace OpenInWeb
 {
     public class GitHubWebProvider : IWebProvider
     {
+        public bool CanHandle(string repositoryUrl)
+        {
+            var uri = new Uri(repositoryUrl);
+
+            return uri.Host.Equals("github.com");
+        }
+
         public string CreateFileUrl(string repositoryUrl, string relativePath, string version, ISelectionInformation selection)
         {
             var sb = new UriBuilder(repositoryUrl);

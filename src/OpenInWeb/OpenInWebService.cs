@@ -32,10 +32,14 @@ namespace OpenInWeb
 
             foreach (IWebProvider webProvider in _providers)
             {
-                string url = webProvider.CreateFileUrl(repositoryUrl, relativePath, version, selection);
-                if (!string.IsNullOrWhiteSpace(url))
+                if (webProvider.CanHandle(repositoryUrl))
                 {
-                    OpenBrowser(url);
+                    string url = webProvider.CreateFileUrl(repositoryUrl, relativePath, version, selection);
+                    if (!string.IsNullOrWhiteSpace(url))
+                    {
+                        OpenBrowser(url);
+                        break;
+                    }
                 }
             }
         }

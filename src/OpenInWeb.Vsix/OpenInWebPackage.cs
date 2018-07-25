@@ -26,6 +26,7 @@ namespace OpenInWeb.Vsix
             var providers = new IWebProvider[]
             {
                 new GitHubWebProvider(),
+                new VstsWebProvider(),
             };
 
             var service = new OpenInWebService(providers);

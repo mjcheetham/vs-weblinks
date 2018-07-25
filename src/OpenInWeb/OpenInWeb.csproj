@@ -54,6 +54,7 @@
     <Compile Include="PathHelpers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UriHelper.cs" />
+    <Compile Include="VstsWebProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="StrongNameKey.snk" />
