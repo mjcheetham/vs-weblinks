@@ -1,9 +1,7 @@
 ﻿using System;
-using System.ComponentModel.Design;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Windows.Input;
 using Microsoft.VisualStudio.Shell;
 using Task = System.Threading.Tasks.Task;
 
@@ -22,24 +20,17 @@ namespace Mjcheetham.WebLinks.VisualStudio
             await this.JoinableTaskFactory.SwitchToMainThreadAsync(cancellationToken);
 
             // Register commands
-            OleMenuCommandService commandService = await this.GetServiceAsync<IMenuCommandService, OleMenuCommandService>();
+            var commandManager = new CommandManager(this);
 
-            RegisterCommand(commandService, Constants.MainCommandSet, CopySelectionLinkCommand.CommandId, new CopySelectionLinkCommand(this));
-            RegisterCommand(commandService, Constants.MainCommandSet, OpenSelectionLinkCommand.CommandId, new OpenSelectionLinkCommand(this));
-            RegisterCommand(commandService, Constants.MainCommandSet, CopyFileLinkCommand.CommandId,      new CopyFileLinkCommand(this));
-            RegisterCommand(commandService, Constants.MainCommandSet, OpenFileLinkCommand.CommandId,      new OpenFileLinkCommand(this));
+            commandManager.RegisterCommand(Constants.MainCommandSet, OpenSelectionLinkCommand.CommandId, new OpenSelectionLinkCommand(this));
+            commandManager.RegisterCommand(Constants.MainCommandSet, CopySelectionLinkCommand.CommandId, new CopySelectionLinkCommand(this));
+            commandManager.RegisterCommand(Constants.MainCommandSet, OpenFileLinkCommand.CommandId,      new OpenFileLinkCommand(this));
+            commandManager.RegisterCommand(Constants.MainCommandSet, CopyFileLinkCommand.CommandId,      new CopyFileLinkCommand(this));
         }
 
         private static Task<IWebLinksService> CreateOpenInWebService()
         {
             return Task.FromResult<IWebLinksService>(new GitWebLinksService());
-        }
-
-        private static void RegisterCommand(OleMenuCommandService commandService, Guid commandSet, int commandId, ICommand command)
-        {
-            var menuCommandId = new CommandID(commandSet, commandId);
-            var menuItem = new MenuCommand((s, e) => command.Execute(null), menuCommandId);
-            commandService.AddCommand(menuItem);
         }
     }
 }
