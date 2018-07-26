@@ -7,13 +7,13 @@ using System.Windows.Input;
 using Microsoft.VisualStudio.Shell;
 using Task = System.Threading.Tasks.Task;
 
-namespace OpenInWeb.Vsix
+namespace Mjcheetham.WebLinks.VisualStudio
 {
     [PackageRegistration(UseManagedResourcesOnly = true, AllowsBackgroundLoading = true)]
     [InstalledProductRegistration("#110", "#112", "1.0", IconResourceID = 400)]
     [ProvideMenuResource("Menus.ctmenu", 1)]
     [Guid(Constants.PackageId)]
-    public sealed class OpenInWebPackage : AsyncPackage
+    public sealed class WebLinksPackage : AsyncPackage
     {
         protected override async Task InitializeAsync(CancellationToken cancellationToken, IProgress<ServiceProgressData> progress)
         {

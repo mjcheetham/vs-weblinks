@@ -14,7 +14,7 @@
       <Button guid="guidMainCmdSet" id="OpenSelectionInWeb" priority="0x0100" type="Button">
         <Parent guid="guidMainCmdSet" id="EditorContext_MainGroup" />
         <Strings>
-          <ButtonText>Open In Web</ButtonText>
+          <ButtonText>View In Web</ButtonText>
         </Strings>
       </Button>
       <Button guid="guidMainCmdSet" id="CopySelectionInWeb" priority="0x0200" type="Button">

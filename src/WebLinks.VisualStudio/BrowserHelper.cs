@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 
-namespace OpenInWeb.Vsix
+namespace Mjcheetham.WebLinks.VisualStudio
 {
     internal static class BrowserHelper
     {

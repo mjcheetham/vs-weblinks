@@ -5,7 +5,7 @@ using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Text;
 using Microsoft.VisualStudio.Text.Editor;
 
-namespace OpenInWeb.Vsix
+namespace Mjcheetham.WebLinks.VisualStudio
 {
     internal abstract class SelectionLinkCommand : ICommand
     {
@@ -41,7 +41,9 @@ namespace OpenInWeb.Vsix
 
         #region ICommand
 
+#pragma warning disable CS0067
         public event EventHandler CanExecuteChanged;
+#pragma warning restore CS0067
 
         public bool CanExecute(object parameter)
         {
@@ -52,6 +54,10 @@ namespace OpenInWeb.Vsix
 
         #endregion
 
+        protected virtual void RaiseCanExecuteChanged()
+        {
+            CanExecuteChanged?.Invoke(this, EventArgs.Empty);
+        }
     }
 
     internal sealed class OpenSelectionLinkCommand : SelectionLinkCommand

@@ -5,11 +5,11 @@ VisualStudioVersion = 15.0.27703.2035
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{05BE30F2-EBE1-4527-ADA6-D4A3C0530A78}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenInWeb.Vsix", "src\OpenInWeb.Vsix\OpenInWeb.Vsix.csproj", "{E10A32A0-B019-4EAB-84C7-121191DC0480}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebLinks.VisualStudio", "src\WebLinks.VisualStudio\WebLinks.VisualStudio.csproj", "{E10A32A0-B019-4EAB-84C7-121191DC0480}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenInWeb", "src\OpenInWeb\OpenInWeb.csproj", "{0627D3BC-BF58-493B-A03D-82A1B2A911AD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebLinks", "src\WebLinks\WebLinks.csproj", "{0627D3BC-BF58-493B-A03D-82A1B2A911AD}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "etc", "etc", "{22A1900A-985A-495F-AA2D-89997A1AE76E}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "etc", "etc", "{ACB349D7-42F3-42F3-9B25-EC230367A458}"
 	ProjectSection(SolutionItems) = preProject
 		etc\StrongNameKey.snk = etc\StrongNameKey.snk
 	EndProjectSection

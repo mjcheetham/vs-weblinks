@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace OpenInWeb
+namespace Mjcheetham.WebLinks
 {
     public static class UriHelper
     {

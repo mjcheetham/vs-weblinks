@@ -7,8 +7,8 @@
     <ProjectGuid>{0627D3BC-BF58-493B-A03D-82A1B2A911AD}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>OpenInWeb</RootNamespace>
-    <AssemblyName>OpenInWeb</AssemblyName>
+    <RootNamespace>Mjcheetham.WebLinks</RootNamespace>
+    <AssemblyName>Mjcheetham.WebLinks</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

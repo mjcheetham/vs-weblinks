@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace OpenInWeb
+namespace Mjcheetham.WebLinks
 {
     internal static class PathHelpers
     {

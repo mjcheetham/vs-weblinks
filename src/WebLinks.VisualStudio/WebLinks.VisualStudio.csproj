@@ -23,8 +23,8 @@
     <ProjectGuid>{E10A32A0-B019-4EAB-84C7-121191DC0480}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>OpenInWeb.Vsix</RootNamespace>
-    <AssemblyName>OpenInWeb.Vsix</AssemblyName>
+    <RootNamespace>Mjcheetham.WebLinks.VisualStudio</RootNamespace>
+    <AssemblyName>Mjcheetham.WebLinks.VisualStudio</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <GeneratePkgDefFile>true</GeneratePkgDefFile>
     <IncludeAssemblyInVSIXContainer>true</IncludeAssemblyInVSIXContainer>
@@ -58,7 +58,7 @@
     <Compile Include="Constants.cs" />
     <Compile Include="EditorHelper.cs" />
     <Compile Include="Commands.cs" />
-    <Compile Include="OpenInWebPackage.cs" />
+    <Compile Include="WebLinksPackage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceProviderExtensions.cs" />
   </ItemGroup>
@@ -71,11 +71,11 @@
     <None Include="StrongNameKey.snk" />
   </ItemGroup>
   <ItemGroup>
-    <VSCTCompile Include="OpenInWebPackage.vsct">
+    <VSCTCompile Include="WebLinksPackage.vsct">
       <ResourceName>Menus.ctmenu</ResourceName>
       <SubType>Designer</SubType>
     </VSCTCompile>
-    <Content Include="Resources\OpenInWebPackage.ico" />
+    <Content Include="Resources\Package.ico" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="EnvDTE, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
@@ -195,9 +195,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\OpenInWeb\OpenInWeb.csproj">
+    <ProjectReference Include="..\OpenInWeb\WebLinks.csproj">
       <Project>{0627d3bc-bf58-493b-a03d-82a1b2a911ad}</Project>
-      <Name>OpenInWeb</Name>
+      <Name>WebLinks</Name>
       <IncludeOutputGroupsInVSIX>BuiltProjectOutputGroup%3bBuiltProjectOutputGroupDependencies%3bGetCopyToOutputDirectoryItems%3bSatelliteDllsProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>
       <IncludeOutputGroupsInVSIXLocalOnly>DebugSymbolsProjectOutputGroup%3b</IncludeOutputGroupsInVSIXLocalOnly>
     </ProjectReference>

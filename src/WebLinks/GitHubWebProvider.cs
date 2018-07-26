@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace OpenInWeb
+namespace Mjcheetham.WebLinks
 {
     internal class GitHubWebProvider : IWebProvider
     {

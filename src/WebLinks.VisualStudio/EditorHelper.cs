@@ -4,7 +4,7 @@ using Microsoft.VisualStudio.Text;
 using Microsoft.VisualStudio.Text.Editor;
 using Microsoft.VisualStudio.TextManager.Interop;
 
-namespace OpenInWeb.Vsix
+namespace Mjcheetham.WebLinks.VisualStudio
 {
     internal static class EditorHelper
     {

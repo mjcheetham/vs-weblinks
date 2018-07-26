@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace OpenInWeb
+namespace Mjcheetham.WebLinks
 {
     internal class VstsWebProvider : IWebProvider
     {

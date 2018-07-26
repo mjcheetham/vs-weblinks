@@ -3,7 +3,7 @@ using System.ComponentModel.Design;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.Shell;
 
-namespace OpenInWeb.Vsix
+namespace Mjcheetham.WebLinks.VisualStudio
 {
     internal static class ServiceProviderExtensions
     {

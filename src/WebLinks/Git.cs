@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.IO;
 
-namespace OpenInWeb
+namespace Mjcheetham.WebLinks
 {
     internal static class Git
     {

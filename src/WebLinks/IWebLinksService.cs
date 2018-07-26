@@ -1,4 +1,4 @@
-﻿namespace OpenInWeb
+﻿namespace Mjcheetham.WebLinks
 {
     public interface IWebLinksService
     {

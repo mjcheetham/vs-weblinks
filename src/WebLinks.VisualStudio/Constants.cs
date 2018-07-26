@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace OpenInWeb.Vsix
+namespace Mjcheetham.WebLinks.VisualStudio
 {
     internal static class Constants
     {

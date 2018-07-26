@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
     <Metadata>
-        <Identity Id="OpenInWeb.263aaa14-9aec-470c-9799-f2baba81a4c2" Version="1.0" Language="en-US" Publisher="Matthew John Cheetham" />
-        <DisplayName>OpenInWeb</DisplayName>
-        <Description xml:space="preserve">Open highlighted source in the web.</Description>
+        <Identity Id="WebLinks.263aaa14-9aec-470c-9799-f2baba81a4c2" Version="1.0" Language="en-US" Publisher="Matthew John Cheetham" />
+        <DisplayName>WebLinks</DisplayName>
+        <Description xml:space="preserve">Generate and open links to your source files in the web.</Description>
     </Metadata>
     <Installation>
         <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[15.0, 16.0)" />
@@ -17,6 +17,6 @@
     </Prerequisites>
     <Assets>
         <Asset Type="Microsoft.VisualStudio.VsPackage" d:Source="Project" d:ProjectName="%CurrentProject%" Path="|%CurrentProject%;PkgdefProjectOutputGroup|" />
-        <Asset Type="Microsoft.VisualStudio.Assembly" d:Source="Project" d:ProjectName="OpenInWeb" Path="|OpenInWeb|" AssemblyName="|OpenInWeb;AssemblyName|" />
+        <Asset Type="Microsoft.VisualStudio.Assembly" d:Source="Project" d:ProjectName="WebLinks" Path="|WebLinks|" AssemblyName="|WebLinks;AssemblyName|" />
     </Assets>
 </PackageManifest>
