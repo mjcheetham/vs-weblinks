@@ -44,13 +44,15 @@ namespace Mjcheetham.WebLinks
             // Selection
             if (selection != null)
             {
+                bool isSpanSelection = !(selection.StartLineNumber == selection.EndLineNumber &&
+                                         selection.StartCharacterNumber == selection.EndCharacterNumber);
+
                 query["lineStyle"] = "plain";
                 query["line"]      = selection.StartLineNumber.ToString();
 
                 // If the user has no selection (just a caret location) then we should only
                 // select the entire line and not a span.
-                if (selection.StartLineNumber != selection.EndLineNumber &&
-                    selection.StartCharacterNumber != selection.EndCharacterNumber)
+                if (isSpanSelection)
                 {
                     query["lineEnd"]         = selection.EndLineNumber.ToString();
                     query["lineStartColumn"] = selection.StartCharacterNumber.ToString();
