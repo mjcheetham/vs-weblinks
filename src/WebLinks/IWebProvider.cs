@@ -2,6 +2,8 @@
 {
     internal interface IWebProvider
     {
+        string Name { get; }
+
         bool CanHandle(string repositoryUrl);
 
         string CreateFileUrl(string repositoryUrl, string relativePath, VersionInformation version, SelectionInformation selection);

@@ -10,6 +10,29 @@ namespace Mjcheetham.WebLinks
             new VstsWebProvider(),
         };
 
+        #region IWebLinksService
+
+        public string GetProviderForFile(string filePath)
+        {
+            if (_providers.Count == 0)
+            {
+                return null;
+            }
+
+            string repositoryPath = Git.GetRepositoryPath(filePath);
+            string repositoryUrl = Git.GetRepositoryUrl(repositoryPath);
+
+            foreach (IWebProvider webProvider in _providers)
+            {
+                if (webProvider.CanHandle(repositoryUrl))
+                {
+                    return webProvider.Name;
+                }
+            }
+
+            return null;
+        }
+
         public string GetFileUrl(string filePath)
         {
             return GetFileUrlFromProvider(filePath, null, null);
@@ -32,6 +55,10 @@ namespace Mjcheetham.WebLinks
             return GetFileUrlFromProvider(filePath, version, selection);
         }
 
+        #endregion
+
+        #region Private methods
+
         private string GetFileUrlFromProvider(string filePath, VersionInformation version, SelectionInformation selection)
         {
             string repositoryPath = Git.GetRepositoryPath(filePath);
@@ -53,4 +80,6 @@ namespace Mjcheetham.WebLinks
             return null;
         }
     }
+
+    #endregion
 }

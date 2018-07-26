@@ -5,6 +5,8 @@ namespace Mjcheetham.WebLinks
 {
     internal class VstsWebProvider : IWebProvider
     {
+        public string Name => "Team Services";
+
         public bool CanHandle(string repositoryUrl)
         {
             var uri = new Uri(repositoryUrl);

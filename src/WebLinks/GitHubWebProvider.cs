@@ -4,6 +4,8 @@ namespace Mjcheetham.WebLinks
 {
     internal class GitHubWebProvider : IWebProvider
     {
+        public string Name => "GitHub";
+
         public bool CanHandle(string repositoryUrl)
         {
             var uri = new Uri(repositoryUrl);

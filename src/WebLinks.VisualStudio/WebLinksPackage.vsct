@@ -17,6 +17,9 @@
     <Buttons>
       <Button guid="guidMainCmdSet" id="CopyFileInWeb" priority="0x0100" type="Button">
         <Parent guid="guidMainCmdSet" id="DocumentContext_MainGroup" />
+        <CommandFlag>TextChanges</CommandFlag>
+        <CommandFlag>DefaultDisabled</CommandFlag>
+        <CommandFlag>DynamicVisibility</CommandFlag>
         <Strings>
           <ButtonText>Copy Web Link</ButtonText>
         </Strings>
@@ -24,6 +27,9 @@
       <Button guid="guidMainCmdSet" id="OpenFileInWeb" priority="0x0200" type="Button">
         <Parent guid="guidMainCmdSet" id="DocumentContext_MainGroup" />
         <Icon guid="ImageCatalogGuid" id="OpenLink"/>
+        <CommandFlag>TextChanges</CommandFlag>
+        <CommandFlag>DefaultDisabled</CommandFlag>
+        <CommandFlag>DynamicVisibility</CommandFlag>
         <CommandFlag>IconIsMoniker</CommandFlag>
         <Strings>
           <ButtonText>Open in Web</ButtonText>
@@ -31,6 +37,9 @@
       </Button>
       <Button guid="guidMainCmdSet" id="CopySelectionInWeb" priority="0x0100" type="Button">
         <Parent guid="guidMainCmdSet" id="EditorContext_MainGroup" />
+        <CommandFlag>TextChanges</CommandFlag>
+        <CommandFlag>DefaultDisabled</CommandFlag>
+        <CommandFlag>DynamicVisibility</CommandFlag>
         <Strings>
           <ButtonText>Copy Web Link</ButtonText>
         </Strings>
@@ -38,6 +47,9 @@
       <Button guid="guidMainCmdSet" id="OpenSelectionInWeb" priority="0x0200" type="Button">
         <Parent guid="guidMainCmdSet" id="EditorContext_MainGroup" />
         <Icon guid="ImageCatalogGuid" id="OpenLink"/>
+        <CommandFlag>TextChanges</CommandFlag>
+        <CommandFlag>DefaultDisabled</CommandFlag>
+        <CommandFlag>DynamicVisibility</CommandFlag>
         <CommandFlag>IconIsMoniker</CommandFlag>
         <Strings>
           <ButtonText>Open in Web</ButtonText>

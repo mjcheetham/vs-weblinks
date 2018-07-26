@@ -58,7 +58,12 @@
     <Compile Include="Constants.cs" />
     <Compile Include="EditorHelper.cs" />
     <Compile Include="CommandManager.cs" />
-    <Compile Include="Common.cs" />
+    <Compile Include="Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="SelectionHelper.cs" />
     <Compile Include="Commands.cs" />
     <Compile Include="WebLinksPackage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -191,6 +196,11 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="VSPackage.resx">
       <MergeWithCTO>true</MergeWithCTO>
       <ManifestResourceName>VSPackage</ManifestResourceName>
