@@ -21,7 +21,7 @@ namespace Mjcheetham.WebLinks
         public static string GetCurrentRepositoryVersion(string repositoryPath, bool resolveRef)
         {
             string cmd = resolveRef
-                       ? "rev-parse --abbrev-ref HEAD"
+                       ? "symbolic-ref -q --short HEAD"
                        : "rev-parse HEAD";
 
             return ExecuteGitCommand(repositoryPath, cmd).TrimEnd(null);
