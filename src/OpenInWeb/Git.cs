@@ -18,9 +18,13 @@ namespace OpenInWeb
             return originUrl;
         }
 
-        public static string GetCurrentRepositoryVersion(string repositoryPath)
+        public static string GetCurrentRepositoryVersion(string repositoryPath, bool resolveRef)
         {
-            return ExecuteGitCommand(repositoryPath, "rev-parse --abbrev-ref HEAD").TrimEnd(null);
+            string cmd = resolveRef
+                       ? "rev-parse --abbrev-ref HEAD"
+                       : "rev-parse HEAD";
+
+            return ExecuteGitCommand(repositoryPath, cmd).TrimEnd(null);
         }
 
         public static string GetRepositoryPath(string filePath)

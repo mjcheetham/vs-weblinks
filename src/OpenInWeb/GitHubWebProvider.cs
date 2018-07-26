@@ -2,7 +2,7 @@
 
 namespace OpenInWeb
 {
-    public class GitHubWebProvider : IWebProvider
+    internal class GitHubWebProvider : IWebProvider
     {
         public bool CanHandle(string repositoryUrl)
         {
@@ -11,11 +11,11 @@ namespace OpenInWeb
             return uri.Host.Equals("github.com");
         }
 
-        public string CreateFileUrl(string repositoryUrl, string relativePath, string version, ISelectionInformation selection)
+        public string CreateFileUrl(string repositoryUrl, string relativePath, VersionInformation version, SelectionInformation selection)
         {
             var sb = new UriBuilder(repositoryUrl);
 
-            UriHelper.AppendPath(sb, $"blob/{version ?? "master"}");
+            UriHelper.AppendPath(sb, $"blob/{version.BranchName ?? version.CommitId}");
             UriHelper.AppendPath(sb, PathHelpers.ToUnixPath(relativePath));
 
             // GitHub only supports linking to a single line rather than a span

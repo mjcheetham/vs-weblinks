@@ -11,10 +11,16 @@
     </Groups>
 
     <Buttons>
-      <Button guid="guidMainCmdSet" id="OpenInWeb" priority="0x0100" type="Button">
+      <Button guid="guidMainCmdSet" id="OpenSelectionInWeb" priority="0x0100" type="Button">
         <Parent guid="guidMainCmdSet" id="EditorContext_MainGroup" />
         <Strings>
           <ButtonText>Open In Web</ButtonText>
+        </Strings>
+      </Button>
+      <Button guid="guidMainCmdSet" id="CopySelectionInWeb" priority="0x0200" type="Button">
+        <Parent guid="guidMainCmdSet" id="EditorContext_MainGroup" />
+        <Strings>
+          <ButtonText>Copy Web Link</ButtonText>
         </Strings>
       </Button>
     </Buttons>
@@ -28,7 +34,8 @@
       <IDSymbol name="EditorContext_MainGroup" value="0x1020" />
 
       <!-- Buttons -->
-      <IDSymbol name="OpenInWeb" value="0x0100" />
+      <IDSymbol name="OpenSelectionInWeb" value="0x0100" />
+      <IDSymbol name="CopySelectionInWeb" value="0x0101" />
     </GuidSymbol>
   </Symbols>
 </CommandTable>

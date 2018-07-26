@@ -48,9 +48,9 @@
   <ItemGroup>
     <Compile Include="Git.cs" />
     <Compile Include="GitHubWebProvider.cs" />
-    <Compile Include="ISelectionInformation.cs" />
+    <Compile Include="IWebLinksService.cs" />
     <Compile Include="IWebProvider.cs" />
-    <Compile Include="OpenInWebService.cs" />
+    <Compile Include="GitWebLinksService.cs" />
     <Compile Include="PathHelpers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UriHelper.cs" />
