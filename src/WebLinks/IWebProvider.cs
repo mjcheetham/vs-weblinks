@@ -7,21 +7,35 @@
         string CreateFileUrl(string repositoryUrl, string relativePath, VersionInformation version, SelectionInformation selection);
     }
 
-    internal struct SelectionInformation
+    internal class SelectionInformation
     {
-        public int StartLineNumber;
+        public SelectionInformation(int startLine, int endLine, int startChar, int endChar)
+        {
+            StartLineNumber = startLine;
+            EndLineNumber = endLine;
+            StartCharacterNumber = startChar;
+            EndCharacterNumber = endChar;
+        }
 
-        public int StartCharacterNumber;
+        public int StartLineNumber { get; }
 
-        public int EndLineNumber;
+        public int EndLineNumber { get; }
 
-        public int EndCharacterNumber;
+        public int StartCharacterNumber { get; }
+
+        public int EndCharacterNumber { get; }
     }
 
-    internal struct VersionInformation
+    internal class VersionInformation
     {
-        public string BranchName;
+        public VersionInformation(string branchName, string commitId)
+        {
+            BranchName = branchName;
+            CommitId = commitId;
+        }
 
-        public string CommitId;
+        public string BranchName { get; }
+
+        public string CommitId { get; }
     }
 }

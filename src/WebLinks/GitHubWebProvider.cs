@@ -15,12 +15,29 @@ namespace Mjcheetham.WebLinks
         {
             var sb = new UriBuilder(repositoryUrl);
 
-            UriHelper.AppendPath(sb, $"blob/{version.BranchName ?? version.CommitId}");
+            string versionString;
+            if (version?.BranchName != null)
+            {
+                versionString = $"blob/{version.BranchName}";
+            }
+            else if (version?.CommitId != null)
+            {
+                versionString = $"blob/{version.CommitId}";
+            }
+            else
+            {
+                versionString = "blob/master";
+            }
+
+            UriHelper.AppendPath(sb, versionString);
             UriHelper.AppendPath(sb, PathHelpers.ToUnixPath(relativePath));
 
-            // GitHub only supports linking to a single line rather than a span
-            // so just use the starting line of the selection.
-            sb.Fragment = $"L{selection.StartLineNumber}";
+            if (selection != null)
+            {
+                // GitHub only supports linking to a single line rather than a span
+                // so just use the starting line of the selection.
+                sb.Fragment = $"L{selection.StartLineNumber}";
+            }
 
             return sb.ToString();
         }

@@ -60,22 +60,9 @@ namespace Mjcheetham.WebLinks.VisualStudio
         }
     }
 
-    internal sealed class OpenSelectionLinkCommand : SelectionLinkCommand
-    {
-        public const int CommandId = 0x0100;
-
-        public OpenSelectionLinkCommand(AsyncPackage package) : base(package) { }
-
-        public override void Execute(object parameter)
-        {
-            string url = GetSelectedTextUrl();
-            BrowserHelper.OpenBrowser(url);
-        }
-    }
-
     internal sealed class CopySelectionLinkCommand : SelectionLinkCommand
     {
-        public const int CommandId = 0x0101;
+        public const int CommandId = 0x0110;
 
         public CopySelectionLinkCommand(AsyncPackage package) : base(package) { }
 
@@ -83,6 +70,19 @@ namespace Mjcheetham.WebLinks.VisualStudio
         {
             string url = GetSelectedTextUrl();
             Clipboard.SetText(url);
+        }
+    }
+
+    internal sealed class OpenSelectionLinkCommand : SelectionLinkCommand
+    {
+        public const int CommandId = 0x0111;
+
+        public OpenSelectionLinkCommand(AsyncPackage package) : base(package) { }
+
+        public override void Execute(object parameter)
+        {
+            string url = GetSelectedTextUrl();
+            BrowserHelper.OpenBrowser(url);
         }
     }
 }

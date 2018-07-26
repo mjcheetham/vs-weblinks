@@ -24,8 +24,10 @@ namespace Mjcheetham.WebLinks.VisualStudio
             // Register commands
             OleMenuCommandService commandService = await this.GetServiceAsync<IMenuCommandService, OleMenuCommandService>();
 
-            RegisterCommand(commandService, Constants.MainCommandSet, OpenSelectionLinkCommand.CommandId, new OpenSelectionLinkCommand(this));
             RegisterCommand(commandService, Constants.MainCommandSet, CopySelectionLinkCommand.CommandId, new CopySelectionLinkCommand(this));
+            RegisterCommand(commandService, Constants.MainCommandSet, OpenSelectionLinkCommand.CommandId, new OpenSelectionLinkCommand(this));
+            RegisterCommand(commandService, Constants.MainCommandSet, CopyFileLinkCommand.CommandId,      new CopyFileLinkCommand(this));
+            RegisterCommand(commandService, Constants.MainCommandSet, OpenFileLinkCommand.CommandId,      new OpenFileLinkCommand(this));
         }
 
         private static Task<IWebLinksService> CreateOpenInWebService()

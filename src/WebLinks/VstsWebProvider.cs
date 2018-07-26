@@ -23,33 +23,37 @@ namespace Mjcheetham.WebLinks
 
             var query = new Dictionary<string, string>
             {
-                ["path"]            = $"/{PathHelpers.ToUnixPath(relativePath)}",
-                ["lineStyle"]       = "plain",
+                ["path"] = $"/{PathHelpers.ToUnixPath(relativePath)}",
             };
 
             // Version
-            if (version.BranchName != null)
+            if (version != null)
             {
-                query["version"] = $"GB{version.BranchName}";
-            }
-            else if (version.CommitId != null)
-            {
-                query["version"] = $"GC{version.CommitId}";
+                if (version.BranchName != null)
+                {
+                    query["version"] = $"GB{version.BranchName}";
+                }
+                else if (version.CommitId != null)
+                {
+                    query["version"] = $"GC{version.CommitId}";
+                }
             }
 
             // Selection
-            if (selection.StartLineNumber == selection.EndLineNumber &&
-                selection.StartCharacterNumber == selection.EndCharacterNumber)
+            if (selection != null)
             {
-                // Select the entire line if the user has no selection (just a caret located on the line)
-                query["line"]            = selection.StartLineNumber.ToString();
-            }
-            else
-            {
-                query["line"]            = selection.StartLineNumber.ToString();
-                query["lineEnd"]         = selection.EndLineNumber.ToString();
-                query["lineStartColumn"] = selection.StartCharacterNumber.ToString();
-                query["lineEndColumn"]   = selection.EndCharacterNumber.ToString();
+                query["lineStyle"] = "plain";
+                query["line"]      = selection.StartLineNumber.ToString();
+
+                // If the user has no selection (just a caret location) then we should only
+                // select the entire line and not a span.
+                if (selection.StartLineNumber != selection.EndLineNumber &&
+                    selection.StartCharacterNumber != selection.EndCharacterNumber)
+                {
+                    query["lineEnd"]         = selection.EndLineNumber.ToString();
+                    query["lineStartColumn"] = selection.StartCharacterNumber.ToString();
+                    query["lineEndColumn"]   = selection.EndCharacterNumber.ToString();
+                }
             }
 
             sb.Query = UriHelper.ToQueryString(query);

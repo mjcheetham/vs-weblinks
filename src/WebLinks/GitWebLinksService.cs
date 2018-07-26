@@ -10,6 +10,11 @@ namespace Mjcheetham.WebLinks
             new VstsWebProvider(),
         };
 
+        public string GetFileUrl(string filePath)
+        {
+            return GetFileUrlFromProvider(filePath, null, null);
+        }
+
         public string GetFileSelectionUrl(string filePath, int lineStart, int lineEnd, int charStart, int charEnd)
         {
             if (_providers.Count == 0)
@@ -18,24 +23,20 @@ namespace Mjcheetham.WebLinks
             }
 
             string repositoryPath = Git.GetRepositoryPath(filePath);
-            string repositoryUrl  = Git.GetRepositoryUrl(repositoryPath);
-            string relativePath   = PathHelpers.GetRelativePath(repositoryPath, filePath);
             string versionBranch  = Git.GetCurrentRepositoryVersion(repositoryPath, resolveRef: true);
             string versionCommit  = Git.GetCurrentRepositoryVersion(repositoryPath, resolveRef: false);
 
-            var version = new VersionInformation
-            {
-                BranchName = versionBranch,
-                CommitId = versionCommit
-            };
+            var version = new VersionInformation(versionBranch, versionCommit);
+            var selection = new SelectionInformation(lineStart, lineEnd, charStart, charEnd);
 
-            var selection = new SelectionInformation
-            {
-                StartLineNumber      = lineStart,
-                EndLineNumber        = lineEnd,
-                StartCharacterNumber = charStart,
-                EndCharacterNumber   = charEnd,
-            };
+            return GetFileUrlFromProvider(filePath, version, selection);
+        }
+
+        private string GetFileUrlFromProvider(string filePath, VersionInformation version, SelectionInformation selection)
+        {
+            string repositoryPath = Git.GetRepositoryPath(filePath);
+            string repositoryUrl = Git.GetRepositoryUrl(repositoryPath);
+            string relativePath = PathHelpers.GetRelativePath(repositoryPath, filePath);
 
             foreach (IWebProvider webProvider in _providers)
             {
