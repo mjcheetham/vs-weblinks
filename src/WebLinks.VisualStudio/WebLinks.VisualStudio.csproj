@@ -195,7 +195,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\OpenInWeb\WebLinks.csproj">
+    <ProjectReference Include="..\WebLinks\WebLinks.csproj">
       <Project>{0627d3bc-bf58-493b-a03d-82a1b2a911ad}</Project>
       <Name>WebLinks</Name>
       <IncludeOutputGroupsInVSIX>BuiltProjectOutputGroup%3bBuiltProjectOutputGroupDependencies%3bGetCopyToOutputDirectoryItems%3bSatelliteDllsProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>
