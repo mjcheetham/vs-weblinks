@@ -7,9 +7,9 @@ namespace Mjcheetham.WebLinks
     {
         public static string GetRelativePath(string basePath, string filePath)
         {
-            if (!basePath.EndsWith("/"))
+            if (basePath.Length > 0 && basePath[basePath.Length - 1] != Path.DirectorySeparatorChar)
             {
-                basePath += "/";
+                basePath += Path.DirectorySeparatorChar;
             }
 
             var fileUri = new Uri(filePath);

@@ -19,8 +19,8 @@ namespace Mjcheetham.WebLinks
                 return null;
             }
 
-            string repositoryPath = Git.GetRepositoryPath(filePath);
-            string repositoryUrl = Git.GetRepositoryUrl(repositoryPath);
+            string repositoryPath = GitHelpers.GetRepositoryPath(filePath);
+            string repositoryUrl = GitHelpers.GetRepositoryUrl(repositoryPath);
 
             foreach (IWebProvider webProvider in _providers)
             {
@@ -45,9 +45,9 @@ namespace Mjcheetham.WebLinks
                 return null;
             }
 
-            string repositoryPath = Git.GetRepositoryPath(filePath);
-            string versionBranch  = Git.GetCurrentRepositoryVersion(repositoryPath, resolveRef: true);
-            string versionCommit  = Git.GetCurrentRepositoryVersion(repositoryPath, resolveRef: false);
+            string repositoryPath = GitHelpers.GetRepositoryPath(filePath);
+            string versionBranch  = GitHelpers.GetCurrentRepositoryVersion(repositoryPath, resolveRef: true);
+            string versionCommit  = GitHelpers.GetCurrentRepositoryVersion(repositoryPath, resolveRef: false);
 
             var version = new VersionInformation(versionBranch, versionCommit);
             var selection = new SelectionInformation(lineStart, lineEnd, charStart, charEnd);
@@ -61,8 +61,8 @@ namespace Mjcheetham.WebLinks
 
         private string GetFileUrlFromProvider(string filePath, VersionInformation version, SelectionInformation selection)
         {
-            string repositoryPath = Git.GetRepositoryPath(filePath);
-            string repositoryUrl = Git.GetRepositoryUrl(repositoryPath);
+            string repositoryPath = GitHelpers.GetRepositoryPath(filePath);
+            string repositoryUrl = GitHelpers.GetRepositoryUrl(repositoryPath);
             string relativePath = PathHelpers.GetRelativePath(repositoryPath, filePath);
 
             foreach (IWebProvider webProvider in _providers)
