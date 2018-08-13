@@ -36,9 +36,18 @@ namespace Mjcheetham.WebLinks
 
             if (selection != null)
             {
-                // GitHub only supports linking to a single line rather than a span
-                // so just use the starting line of the selection.
-                sb.Fragment = $"L{selection.StartLineNumber}";
+                bool isSpanSelection = selection.StartLineNumber != selection.EndLineNumber;
+
+                // GitHub only supports linking to a single lines or line ranges; it doesn't
+                // support column or character selections.
+                if (isSpanSelection)
+                {
+                    sb.Fragment = $"L{selection.StartLineNumber}-L{selection.EndLineNumber}";
+                }
+                else
+                {
+                    sb.Fragment = $"L{selection.StartLineNumber}";
+                }
             }
 
             return sb.ToString();
