@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace Mjcheetham.WebLinks
 {
@@ -20,11 +21,19 @@ namespace Mjcheetham.WebLinks
             }
 
             string repositoryPath = GitHelpers.GetRepositoryPath(filePath);
-            string repositoryUrl = GitHelpers.GetRepositoryUrl(repositoryPath);
+            var trackingInfo = GitHelpers.GetTrackingInfoForHead(repositoryPath);
 
+            if (trackingInfo == null)
+            {
+                // HEAD does not track any remote branch so there can be no
+                // valid hosting provider.
+                return null;
+            }
+
+            // Check all providers for one who can handle this remote URL
             foreach (IWebProvider webProvider in _providers)
             {
-                if (webProvider.CanHandle(repositoryUrl))
+                if (webProvider.CanHandle(trackingInfo.RemoteUrl))
                 {
                     return webProvider.Name;
                 }
@@ -35,7 +44,18 @@ namespace Mjcheetham.WebLinks
 
         public string GetFileUrl(string filePath)
         {
-            return GetFileUrlFromProvider(filePath, null, null);
+            string repositoryPath = GitHelpers.GetRepositoryPath(filePath);
+            var trackingInfo = GitHelpers.GetTrackingInfoForHead(repositoryPath);
+
+            if (trackingInfo == null)
+            {
+                Debug.Fail("Should not be executing if there is no valid provider");
+                return null;
+            }
+
+            var version = new VersionInformation(trackingInfo.BranchName, trackingInfo.CommitId);
+
+            return GetFileUrlFromProvider(repositoryPath, trackingInfo.RemoteUrl, filePath, version, null);
         }
 
         public string GetFileSelectionUrl(string filePath, int lineStart, int lineEnd, int charStart, int charEnd)
@@ -46,30 +66,33 @@ namespace Mjcheetham.WebLinks
             }
 
             string repositoryPath = GitHelpers.GetRepositoryPath(filePath);
-            string versionBranch  = GitHelpers.GetCurrentRepositoryVersion(repositoryPath, resolveRef: true);
-            string versionCommit  = GitHelpers.GetCurrentRepositoryVersion(repositoryPath, resolveRef: false);
+            var trackingInfo = GitHelpers.GetTrackingInfoForHead(repositoryPath);
 
-            var version = new VersionInformation(versionBranch, versionCommit);
+            if (trackingInfo == null)
+            {
+                Debug.Fail("Should not be executing if there is no valid provider");
+                return null;
+            }
+
+            var version = new VersionInformation(trackingInfo.BranchName, trackingInfo.CommitId);
             var selection = new SelectionInformation(lineStart, lineEnd, charStart, charEnd);
 
-            return GetFileUrlFromProvider(filePath, version, selection);
+            return GetFileUrlFromProvider(repositoryPath, trackingInfo.RemoteUrl, filePath, version, selection);
         }
 
         #endregion
 
         #region Private methods
 
-        private string GetFileUrlFromProvider(string filePath, VersionInformation version, SelectionInformation selection)
+        private string GetFileUrlFromProvider(string repositoryPath, string remoteUrl, string filePath, VersionInformation version, SelectionInformation selection)
         {
-            string repositoryPath = GitHelpers.GetRepositoryPath(filePath);
-            string repositoryUrl = GitHelpers.GetRepositoryUrl(repositoryPath);
             string relativePath = PathHelpers.GetRelativePath(repositoryPath, filePath);
 
             foreach (IWebProvider webProvider in _providers)
             {
-                if (webProvider.CanHandle(repositoryUrl))
+                if (webProvider.CanHandle(remoteUrl))
                 {
-                    string url = webProvider.CreateFileUrl(repositoryUrl, relativePath, version, selection);
+                    string url = webProvider.CreateFileUrl(remoteUrl, relativePath, version, selection);
                     if (!string.IsNullOrWhiteSpace(url))
                     {
                         return url;
