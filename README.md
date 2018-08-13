@@ -5,8 +5,12 @@ selection in a file hosted in a remote Git repository.
 
 ## Features
 
-- Open or copy a link to selected text in a file from the Visual Studio editor context menu.
+- Open or copy a link to a file from the Solution Explorer context menu..
+  ![image](https://user-images.githubusercontent.com/5658207/44086843-d899f03a-9fb5-11e8-8c53-c20ed564e3ff.png)
+  ..or from a selected region of text in the editor
   ![image](https://user-images.githubusercontent.com/5658207/43273053-5e4c8f5c-90f3-11e8-9a77-882aa868189c.png)
+
+  ![image](https://user-images.githubusercontent.com/5658207/44086962-29cc2afe-9fb6-11e8-8dd3-6b32d02b75ee.png)
 
 ### Supported Git Hosting Providers
 
