@@ -6,17 +6,22 @@
 
   <Commands package="guidPackage">
     <Groups>
-      <Group guid="guidMainCmdSet" id="DocumentContext_MainGroup" priority="0x0600">
+      <!-- File link group -->
+      <Group guid="guidMainCmdSet" id="FileLinks_MainGroup" priority="0x0600">
+        <!-- Solution Explorer context menu -->
         <Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_ITEMNODE"/>
       </Group>
-      <Group guid="guidMainCmdSet" id="EditorContext_MainGroup" priority="0x0600">
+
+      <!-- Text selection link group -->
+      <Group guid="guidMainCmdSet" id="SelectionLinks_MainGroup" priority="0x0600">
+        <!-- Code editor context menu -->
         <Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_CODEWIN"/>
       </Group>
     </Groups>
 
     <Buttons>
       <Button guid="guidMainCmdSet" id="CopyFileInWeb" priority="0x0100" type="Button">
-        <Parent guid="guidMainCmdSet" id="DocumentContext_MainGroup" />
+        <Parent guid="guidMainCmdSet" id="FileLinks_MainGroup" />
         <CommandFlag>TextChanges</CommandFlag>
         <CommandFlag>DefaultDisabled</CommandFlag>
         <CommandFlag>DefaultInvisible</CommandFlag>
@@ -26,7 +31,7 @@
         </Strings>
       </Button>
       <Button guid="guidMainCmdSet" id="OpenFileInWeb" priority="0x0200" type="Button">
-        <Parent guid="guidMainCmdSet" id="DocumentContext_MainGroup" />
+        <Parent guid="guidMainCmdSet" id="FileLinks_MainGroup" />
         <Icon guid="ImageCatalogGuid" id="OpenLink"/>
         <CommandFlag>TextChanges</CommandFlag>
         <CommandFlag>DefaultDisabled</CommandFlag>
@@ -38,7 +43,7 @@
         </Strings>
       </Button>
       <Button guid="guidMainCmdSet" id="CopySelectionInWeb" priority="0x0100" type="Button">
-        <Parent guid="guidMainCmdSet" id="EditorContext_MainGroup" />
+        <Parent guid="guidMainCmdSet" id="SelectionLinks_MainGroup" />
         <CommandFlag>TextChanges</CommandFlag>
         <CommandFlag>DefaultDisabled</CommandFlag>
         <CommandFlag>DefaultInvisible</CommandFlag>
@@ -48,7 +53,7 @@
         </Strings>
       </Button>
       <Button guid="guidMainCmdSet" id="OpenSelectionInWeb" priority="0x0200" type="Button">
-        <Parent guid="guidMainCmdSet" id="EditorContext_MainGroup" />
+        <Parent guid="guidMainCmdSet" id="SelectionLinks_MainGroup" />
         <Icon guid="ImageCatalogGuid" id="OpenLink"/>
         <CommandFlag>TextChanges</CommandFlag>
         <CommandFlag>DefaultDisabled</CommandFlag>
@@ -62,25 +67,35 @@
     </Buttons>
   </Commands>
 
-  <!--<CommandPlacements>
-    <CommandPlacement guid="guidMainCmdSet" id="DocumentContext_MainGroup" priority="0x0100">
+  <CommandPlacements>
+    <!--<CommandPlacement guid="guidMainCmdSet" id="FileLinks_MainGroup" priority="0x0100">
       <Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_EZDOCWINTAB"/>
+    </CommandPlacement>-->
+
+    <CommandPlacement guid="guidMainCmdSet" id="FileLinks_MainGroup" priority="0x0600">
+      <!-- Solution Explorer (Open Folder) context menu -->
+      <Parent guid="guidVSOpenFolderCmdSet" id="SolutionExplorer_ItemContextMenu"/>
     </CommandPlacement>
-  </CommandPlacements>-->
+  </CommandPlacements>
 
   <Symbols>
     <GuidSymbol name="guidPackage" value="{606c502b-a1df-4f93-8fbe-563535ee1606}" />
 
     <GuidSymbol name="guidMainCmdSet" value="{1411d7eb-4138-4ad9-a153-65061892122e}">
       <!-- Groups -->
-      <IDSymbol name="EditorContext_MainGroup"      value="0x8001" />
-      <IDSymbol name="DocumentContext_MainGroup" value="0x8002" />
+      <IDSymbol name="SelectionLinks_MainGroup" value="0x8001" />
+      <IDSymbol name="FileLinks_MainGroup"      value="0x8002" />
 
       <!-- Buttons -->
       <IDSymbol name="CopyFileInWeb"      value="0x0100" />
       <IDSymbol name="OpenFileInWeb"      value="0x0101" />
       <IDSymbol name="CopySelectionInWeb" value="0x0110" />
       <IDSymbol name="OpenSelectionInWeb" value="0x0111" />
+    </GuidSymbol>
+
+    <!-- Solution Explorer (Open Folder) commands -->
+    <GuidSymbol name="guidVSOpenFolderCmdSet" value="{cfb400f1-5c60-4f3c-856e-180d28def0b7}">
+      <IDSymbol name="SolutionExplorer_ItemContextMenu" value="0x0002"/>
     </GuidSymbol>
   </Symbols>
 </CommandTable>
