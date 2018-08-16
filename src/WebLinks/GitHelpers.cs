@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using LibGit2Sharp;
 
 namespace Mjcheetham.WebLinks
@@ -7,6 +8,11 @@ namespace Mjcheetham.WebLinks
     {
         public static string GetRepositoryPath(string filePath)
         {
+            if (string.IsNullOrWhiteSpace(filePath))
+            {
+                return null;
+            }
+
             const string gitDirPathPart = ".git\\";
             string raw = Repository.Discover(filePath);
 
@@ -20,6 +26,12 @@ namespace Mjcheetham.WebLinks
 
         public static TrackingInfo GetTrackingInfoForHead(string repositoryPath)
         {
+            if (!Repository.IsValid(repositoryPath))
+            {
+                Debug.Fail("Invalid repository path");
+                return null;
+            }
+
             using (var repository = new Repository(repositoryPath))
             {
                 Branch head = repository.Head;
