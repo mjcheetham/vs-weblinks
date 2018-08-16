@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.Design;
+using System.Diagnostics;
 using Microsoft.VisualStudio.Shell;
 
 namespace Mjcheetham.WebLinks.VisualStudio
@@ -42,13 +43,29 @@ namespace Mjcheetham.WebLinks.VisualStudio
         {
             if (sender is OleMenuCommand command && command.Enabled)
             {
-                this.InvokeInternal();
+                try
+                {
+                    this.InvokeInternal();
+                }
+                catch (Exception ex)
+                {
+                    // Swallow exception to prevent VS crash
+                    Trace.WriteLine($"Unhandled exception in VsCommand.Invoke:{Environment.NewLine}{ex}");
+                }
             }
         }
 
         public void QueryStatus(object sender, EventArgs args)
         {
-            this.QueryStatusInternal(sender as OleMenuCommand);
+            try
+            {
+                this.QueryStatusInternal(sender as OleMenuCommand);
+            }
+            catch (Exception ex)
+            {
+                // Swallow exception to prevent VS crash
+                Trace.WriteLine($"Unhandled exception in VsCommand.QueryStatus:{Environment.NewLine}{ex}");
+            }
         }
     }
 }

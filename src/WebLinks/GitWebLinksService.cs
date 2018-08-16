@@ -15,6 +15,11 @@ namespace Mjcheetham.WebLinks
 
         public string GetProviderForFile(string filePath)
         {
+            if (string.IsNullOrWhiteSpace(filePath))
+            {
+                return null;
+            }
+
             if (_providers.Count == 0)
             {
                 return null;
@@ -44,6 +49,11 @@ namespace Mjcheetham.WebLinks
 
         public string GetFileUrl(string filePath)
         {
+            if (string.IsNullOrWhiteSpace(filePath))
+            {
+                return null;
+            }
+
             string repositoryPath = GitHelpers.GetRepositoryPath(filePath);
             var trackingInfo = GitHelpers.GetTrackingInfoForHead(repositoryPath);
 

@@ -25,14 +25,20 @@ namespace Mjcheetham.WebLinks.VisualStudio
             if (_webLinksService != null)
             {
                 string filePath = SelectionHelper.GetSelectedFilePath(_serviceProvider);
+                if (string.IsNullOrWhiteSpace(filePath))
+                {
+                    return;
+                }
 
                 string providerName = _webLinksService.GetProviderForFile(filePath);
-                if (!string.IsNullOrWhiteSpace(providerName))
+                if (string.IsNullOrWhiteSpace(providerName))
                 {
-                    command.Enabled = true;
-                    command.Visible = true;
-                    command.Text = string.Format(Resources.CopyWebLink_Command_ProviderFormat, providerName);
+                    return;
                 }
+
+                command.Enabled = true;
+                command.Visible = true;
+                command.Text = string.Format(Resources.CopyWebLink_Command_ProviderFormat, providerName);
             }
         }
 
@@ -41,6 +47,11 @@ namespace Mjcheetham.WebLinks.VisualStudio
             if (_webLinksService != null)
             {
                 string filePath = SelectionHelper.GetSelectedFilePath(_serviceProvider);
+                if (string.IsNullOrWhiteSpace(filePath))
+                {
+                    return;
+                }
+
                 string url = _webLinksService.GetFileUrl(filePath);
                 Clipboard.SetText(url);
             }
@@ -68,14 +79,20 @@ namespace Mjcheetham.WebLinks.VisualStudio
             if (_webLinksService != null)
             {
                 string filePath = SelectionHelper.GetSelectedFilePath(_serviceProvider);
+                if (string.IsNullOrWhiteSpace(filePath))
+                {
+                    return;
+                }
 
                 string providerName = _webLinksService.GetProviderForFile(filePath);
-                if (!string.IsNullOrWhiteSpace(providerName))
+                if (string.IsNullOrWhiteSpace(providerName))
                 {
-                    command.Enabled = true;
-                    command.Visible = true;
-                    command.Text = string.Format(Resources.OpenInWeb_Command_ProviderFormat, providerName);
+                    return;
                 }
+
+                command.Enabled = true;
+                command.Visible = true;
+                command.Text = string.Format(Resources.OpenInWeb_Command_ProviderFormat, providerName);
             }
         }
 
@@ -84,6 +101,11 @@ namespace Mjcheetham.WebLinks.VisualStudio
             if (_webLinksService != null)
             {
                 string filePath = SelectionHelper.GetSelectedFilePath(_serviceProvider);
+                if (string.IsNullOrWhiteSpace(filePath))
+                {
+                    return;
+                }
+
                 string url = _webLinksService.GetFileUrl(filePath);
                 BrowserHelper.OpenBrowser(url);
             }
@@ -111,14 +133,20 @@ namespace Mjcheetham.WebLinks.VisualStudio
             if (_webLinksService != null)
             {
                 var selection = SelectionHelper.GetEditorSelection(_serviceProvider);
+                if (selection == null)
+                {
+                    return;
+                }
 
                 string providerName = _webLinksService.GetProviderForFile(selection?.FilePath);
-                if (!string.IsNullOrWhiteSpace(providerName))
+                if (string.IsNullOrWhiteSpace(providerName))
                 {
-                    command.Enabled = true;
-                    command.Visible = true;
-                    command.Text = string.Format(Resources.CopyWebLink_Command_ProviderFormat, providerName);
+                    return;
                 }
+
+                command.Enabled = true;
+                command.Visible = true;
+                command.Text = string.Format(Resources.CopyWebLink_Command_ProviderFormat, providerName);
             }
         }
 
@@ -127,6 +155,10 @@ namespace Mjcheetham.WebLinks.VisualStudio
             if (_webLinksService != null)
             {
                 var selection = SelectionHelper.GetEditorSelection(_serviceProvider);
+                if (selection == null)
+                {
+                    return;
+                }
 
                 string url = _webLinksService.GetFileSelectionUrl(
                     selection.FilePath,
@@ -161,14 +193,20 @@ namespace Mjcheetham.WebLinks.VisualStudio
             if (_webLinksService != null)
             {
                 var selection = SelectionHelper.GetEditorSelection(_serviceProvider);
-
-                string providerName = _webLinksService.GetProviderForFile(selection?.FilePath);
-                if (!string.IsNullOrWhiteSpace(providerName))
+                if (selection == null)
                 {
-                    command.Enabled = true;
-                    command.Visible = true;
-                    command.Text = string.Format(Resources.OpenInWeb_Command_ProviderFormat, providerName);
+                    return;
                 }
+
+                string providerName = _webLinksService.GetProviderForFile(selection.FilePath);
+                if (string.IsNullOrWhiteSpace(providerName))
+                {
+                    return;
+                }
+
+                command.Enabled = true;
+                command.Visible = true;
+                command.Text = string.Format(Resources.OpenInWeb_Command_ProviderFormat, providerName);
             }
         }
 
@@ -177,6 +215,10 @@ namespace Mjcheetham.WebLinks.VisualStudio
             if (_webLinksService != null)
             {
                 var selection = SelectionHelper.GetEditorSelection(_serviceProvider);
+                if (selection == null)
+                {
+                    return;
+                }
 
                 string url = _webLinksService.GetFileSelectionUrl(
                     selection.FilePath,
