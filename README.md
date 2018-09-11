@@ -19,7 +19,7 @@ selection in a file hosted in a remote Git repository.
 ### Supported Git Hosting Providers
 
 - [x] GitHub
-- [x] Visual Studio Team Services
+- [x] Azure DevOps (formerly Visual Studio Team Services)
 - [ ] ..more to follow...
 
 ## Building

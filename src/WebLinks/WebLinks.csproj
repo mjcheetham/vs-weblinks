@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AzureDevOpsWebProvider.cs" />
     <Compile Include="GitHelpers.cs" />
     <Compile Include="GitHubWebProvider.cs" />
     <Compile Include="IWebLinksService.cs" />
@@ -59,7 +60,6 @@
     <Compile Include="PathHelpers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UriHelper.cs" />
-    <Compile Include="VstsWebProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

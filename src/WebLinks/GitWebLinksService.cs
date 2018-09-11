@@ -8,7 +8,7 @@ namespace Mjcheetham.WebLinks
         private readonly ICollection<IWebProvider> _providers = new IWebProvider[]
         {
             new GitHubWebProvider(),
-            new VstsWebProvider(),
+            new AzureDevOpsWebProvider(),
         };
 
         #region IWebLinksService
