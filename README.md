@@ -1,3 +1,5 @@
+# Hello world
+
 # VS WebLinks
 
 An extension for Visual Studio that enables you to quickly copy a link to a
