@@ -3,15 +3,21 @@ using System.Collections.Generic;
 
 namespace Mjcheetham.WebLinks
 {
-    internal class VstsWebProvider : IWebProvider
+    internal class AzureDevOpsWebProvider : IWebProvider
     {
-        public string Name => "Team Services";
+        public string Name => "Azure DevOps";
 
         public bool CanHandle(string repositoryUrl)
         {
             var uri = new Uri(repositoryUrl);
+            string hostName = uri.Host;
 
-            if (uri.Host.EndsWith(".visualstudio.com", StringComparison.OrdinalIgnoreCase))
+            if (StringComparer.OrdinalIgnoreCase.Equals(hostName, "dev.azure.com"))
+            {
+                return true;
+            }
+
+            if (hostName.EndsWith(".visualstudio.com", StringComparison.OrdinalIgnoreCase))
             {
                 return true;
             }
