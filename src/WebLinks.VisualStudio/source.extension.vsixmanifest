@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
     <Metadata>
-        <Identity Id="WebLinks.aea81188-c332-45b5-83c3-42c72286b1c4" Version="1.1.1" Language="en-US" Publisher="Matthew John Cheetham" />
+        <Identity Id="WebLinks.aea81188-c332-45b5-83c3-42c72286b1c4" Version="1.2" Language="en-US" Publisher="Matthew John Cheetham" />
         <DisplayName>WebLinks</DisplayName>
         <Description xml:space="preserve">Generate and open links to your source files in the web.</Description>
     </Metadata>
