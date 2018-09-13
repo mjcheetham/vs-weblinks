@@ -3,6 +3,10 @@
 An extension for Visual Studio that enables you to quickly copy a link to a
 selection in a file hosted in a remote Git repository.
 
+## Build status
+
+[![Build Status](https://dev.azure.com/mjcheetham/vs-weblinks/_apis/build/status/mjcheetham.vs-weblinks)](https://dev.azure.com/mjcheetham/vs-weblinks/_build/latest?definitionId=4)
+
 ## Features
 
 - Open or copy a link to a file from the Solution Explorer context menu..
