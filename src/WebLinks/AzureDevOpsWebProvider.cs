@@ -1,33 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 namespace Mjcheetham.WebLinks
 {
     internal class AzureDevOpsWebProvider : IWebProvider
     {
         public string Name => "Azure DevOps";
+        private string SshUriPattern => @"\w+@vs-ssh.visualstudio.com:\w+\/(?<organization>\w+)\/(?<project>\w+)\/(?<repo>\w+)$";
 
         public bool CanHandle(string repositoryUrl)
         {
-            var uri = new Uri(repositoryUrl);
-            string hostName = uri.Host;
-
-            if (StringComparer.OrdinalIgnoreCase.Equals(hostName, "dev.azure.com"))
-            {
-                return true;
-            }
-
-            if (hostName.EndsWith(".visualstudio.com", StringComparison.OrdinalIgnoreCase))
-            {
-                return true;
-            }
-
-            return false;
+            return IsSshUri(repositoryUrl) || IsHttpUri(repositoryUrl);
         }
 
         public string CreateFileUrl(string repositoryUrl, string relativePath, VersionInformation version, SelectionInformation selection)
         {
-            var sb = new UriBuilder(repositoryUrl);
+            var baseUrl = ExtractBaseFileUrl(repositoryUrl);
+            var sb = new UriBuilder(baseUrl);
 
             var query = new Dictionary<string, string>
             {
@@ -69,6 +59,38 @@ namespace Mjcheetham.WebLinks
             sb.Query = UriHelper.ToQueryString(query);
 
             return sb.ToString();
+        }
+
+        private bool IsSshUri(string repositoryUrl)
+        {
+            Match match = Regex.Match(repositoryUrl, SshUriPattern);
+            return match.Success;
+        }
+
+        private bool IsHttpUri(string repositoryUrl)
+        {
+            var uri = new Uri(repositoryUrl);
+            string hostName = uri.Host;
+
+            return StringComparer.OrdinalIgnoreCase.Equals(hostName, "dev.azure.com")
+                || hostName.EndsWith(".visualstudio.com", StringComparison.OrdinalIgnoreCase);
+        }
+
+        private string ExtractBaseFileUrl(string repositoryUrl)
+        {
+            if(IsSshUri(repositoryUrl))
+            {
+                Match match = Regex.Match(repositoryUrl, SshUriPattern);
+                string organization = match.Groups["organization"].Value;
+                string project = match.Groups["project"].Value;
+                string repo = match.Groups["repo"].Value;
+
+                return $"https://{organization}.visualstudio.com/DefaultCollection/{project}/_git/{repo}";
+            }
+            else
+            {
+                return repositoryUrl;
+            }
         }
     }
 }
