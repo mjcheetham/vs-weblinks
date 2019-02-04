@@ -7,7 +7,7 @@ namespace Mjcheetham.WebLinks
     internal class AzureDevOpsWebProvider : IWebProvider
     {
         public string Name => "Azure DevOps";
-        private string SshUriPattern => @"\w+@vs-ssh.visualstudio.com:\w+\/(?<organization>\w+)\/(?<project>\w+)\/(?<repo>\w+)$";
+        private string SshUriPattern => @"(?:.+@)?(?'host'.+)\:v3\/(?'organization'[^\/]+)\/(?'project'[^\/]+)\/(?:_[^\/]+\/)?(?'repo'[^\/]+)\/?$";
 
         public bool CanHandle(string repositoryUrl)
         {
@@ -64,7 +64,14 @@ namespace Mjcheetham.WebLinks
         private bool IsSshUri(string repositoryUrl)
         {
             Match match = Regex.Match(repositoryUrl, SshUriPattern);
-            return match.Success;
+
+            if (match.Success)
+            {
+                string hostName = match.Groups["host"].Value;
+                return StringComparer.OrdinalIgnoreCase.Equals(hostName, "dev.azure.com")
+                    || hostName.EndsWith(".visualstudio.com", StringComparison.OrdinalIgnoreCase);
+            }
+            return false;
         }
 
         private bool IsHttpUri(string repositoryUrl)
