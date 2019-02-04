@@ -8,9 +8,15 @@ namespace Mjcheetham.WebLinks
 
         public bool CanHandle(string repositoryUrl)
         {
-            var uri = new Uri(repositoryUrl);
-
-            return uri.Host.Equals("github.com");
+            try
+            {
+                var uri = new Uri(repositoryUrl);
+                return uri.Host.Equals("github.com");
+            }
+            catch (UriFormatException)
+            {
+                return false;
+            }
         }
 
         public string CreateFileUrl(string repositoryUrl, string relativePath, VersionInformation version, SelectionInformation selection)
