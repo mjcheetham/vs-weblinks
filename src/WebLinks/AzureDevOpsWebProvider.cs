@@ -92,7 +92,7 @@ namespace Mjcheetham.WebLinks
                 string project = match.Groups["project"].Value;
                 string repo = match.Groups["repo"].Value;
 
-                return $"https://{organization}.visualstudio.com/DefaultCollection/{project}/_git/{repo}";
+                return $"https://{organization}.visualstudio.com/{project}/_git/{repo}";
             }
             else
             {
